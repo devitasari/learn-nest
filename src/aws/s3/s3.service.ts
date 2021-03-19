@@ -21,19 +21,19 @@ export class S3Service {
     this.bucket = this.configService.get('AWS_BUCKET');
   }
 
-  // public async upload(key: string, buffer: Buffer): Promise<any> {
-  //   const bucket = this.bucket;
-  //   const params = { Bucket: bucket, Key: key, Body: buffer };
-  //   const upload = await this.s3.upload(params).promise();
-  //   // console.log(upload, '>>>>>');
-  //   return upload;
-  // }
+  public async upload(key: string, buffer: Buffer): Promise<any> {
+    const bucket = this.bucket;
+    const params = { Bucket: bucket, Key: key, Body: buffer };
+    const upload = await this.s3.upload(params).promise();
+    // console.log(upload, '>>>>>');
+    return upload;
+  }
 
 
-  // public async download(): Promise<any> {
-  //   const bucket = this.bucket;
-  //   const params = { Bucket: bucket, Key: 'anyKey'};
-  //   const download = await this.s3.getObject(params).promise();
-  //   return download;
-  // }
+  public async download(): Promise<any> {
+    // const bucket = this.bucket;
+    // const params = { Bucket: bucket, Key: 'anyKey'};
+    // const download = await this.s3.getObject(params).promise();
+    // return download;
+  }
 }
