@@ -1,4 +1,5 @@
 import { S3Service } from './s3.service';
+import { ConfigService } from '@nestjs/config';
 
 const mS3Instance = {
   upload: jest.fn().mockReturnThis(),
@@ -11,14 +12,7 @@ jest.mock('aws-sdk', () => {
 
 describe('S3Service', () => {
   it('should upload succesfully', async () => {
-    const configService = {
-      get: jest
-        .fn()
-        .mockReturnValueOnce('access-key-id')
-        .mockReturnValueOnce('secret-access-key')
-        .mockReturnValueOnce('ap-southeast-1')
-        .mockReturnValueOnce('bucket-test'),
-    };
+    const configService = new ConfigService;
     mS3Instance.promise.mockResolvedValueOnce('just for test');
     const s3ServiceInstance = new S3Service(configService);
     const actual = await s3ServiceInstance.upload('anyKey', Buffer.from('test'));
